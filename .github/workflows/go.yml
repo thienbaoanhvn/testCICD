@@ -28,7 +28,7 @@ jobs:
       run: docker rm go-cicd-container || true
 
     - name: Run Docker container
-      run: docker run -d --name go-cicd-container -p 8081:8081 myapp  
+      run: docker run -d --name go-cicd-container -p 8081:8081 go-cicd  
 
     # - name: Set up Go
     #   uses: actions/setup-go@v4
