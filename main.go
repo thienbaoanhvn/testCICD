@@ -4,7 +4,7 @@ import (
 	"log"
 
 	"github.com/gin-gonic/gin"
-	"github.com/lpernett/godotenv"
+	"github.com/joho/godotenv"
 )
 
 func main() {

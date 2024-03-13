@@ -23,7 +23,7 @@ WORKDIR /
 COPY --from=builder /main .
 
 # Sao chép .env vào trong image, nếu bạn sử dụng
-COPY .env .
+#COPY .env .
 
 # Expose port 8081
 EXPOSE 8081
