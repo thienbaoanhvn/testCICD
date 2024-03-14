@@ -32,7 +32,7 @@ jobs:
 
     - name: Run Docker container
       #run: docker run -d --name go-cicd-container -p 8081:8081 go-cicd -v /home/actsone/local/actions-runner/_work/testCICD/testCICD/.env img-go-cicd
-      run : docker run --name go-cicd-container -p 8081:8081 -v /home/actsone/local/environment/go_cicd/.env:/.env go-cicd
+      run : docker run -d --name go-cicd-container -p 8081:8081 -v /home/actsone/local/environment/go_cicd/.env:/.env go-cicd
 
  
     # - name: Set up Go
