@@ -28,5 +28,10 @@ func main() {
 			"message": "pong2",
 		})
 	})
+	r.GET("/ping3", func(c *gin.Context) {
+		c.JSON(200, gin.H{
+			"message": "pong3",
+		})
+	})
 	r.Run()
 }
