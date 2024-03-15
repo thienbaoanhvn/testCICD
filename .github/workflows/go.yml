@@ -9,36 +9,16 @@ on:
 
 jobs:
 
-  build:
+  build-and-deploy:
     runs-on: self-hosted
     steps:
     - uses: actions/checkout@v2
-    - name: Set up Go
-      uses: actions/setup-go@v2
-      with:
-        go-version: '1.22.0'    
+    - name: Set up Docker Compose
+      run: docker-compose -v
 
-    - name: Stop the existing Docker container
-      run: docker stop go-cicd-container || true
+    - name: Build and Start the application
+      run: docker-compose up --build -d
 
-    - name: Remove the existing Docker container
-      run: docker rm go-cicd-container || true
-
-    - name: Remove existing Docker image
-      run: docker rmi go-cicd || true
-
-    - name: Build the Docker image
-      run: docker build . -t go-cicd
-
-    - name: Run Docker container   
-      run : docker run -d --name go-cicd-container -p 8081:8081 -v /home/actsone/local/environment/go_cicd/.env:/.env go-cicd
-
- 
-    # - name: Set up Go
-    #   uses: actions/setup-go@v4
-    #   with:
-    #     go-version: '1.22.0'
-
-    # - name: Build
-    #   run: go build -v ./...
-      
+    - name: Clean up
+      if: always()
+      run: docker-compose down

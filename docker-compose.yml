@@ -1,0 +1,18 @@
+version: '3.8'
+services:
+  go-app:
+    build: .
+    ports:
+      - "8081:8081"
+    volumes:
+      - ./:/app
+      - /home/actsone/local/environment/go_cicd/.env:/.env
+
+  nginx:
+    build:
+      context: .
+      dockerfile: Dockerfile.nginx
+    ports:
+      - "80:80"
+    depends_on:
+      - go-app
