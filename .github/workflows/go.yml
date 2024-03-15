@@ -1,6 +1,5 @@
 # This workflow will build a golang project
 # For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-go
-
 name: Go CI/CD 
 
 on:
@@ -8,17 +7,17 @@ on:
     branches: [ "main" ] 
 
 jobs:
-
   build-and-deploy:
     runs-on: self-hosted
     steps:
     - uses: actions/checkout@v2
+    
+    # Optionally, prepare environment: stop and remove existing containers, if needed
+    - name: Prepare environment
+      run: docker-compose down || true
+
     - name: Set up Docker Compose
       run: docker-compose -v
 
     - name: Build and Start the application
       run: docker-compose up --build -d
-
-    - name: Clean up
-      if: always()
-      run: docker-compose down
